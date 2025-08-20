@@ -1,0 +1,65 @@
+Summary
+
+1. Imports
+
+torch, torch.nn, torch.optim → for model, layers, and optimization.
+
+2. Dataset Creation
+
+Generated input features X and target Y using the equation:
+
+Y=X^2+2X+5
+
+Data was stored as PyTorch tensors.
+
+3. Model Definition
+
+A sequential neural network model using nn.Sequential():
+
+Takes 1 inputs (X)
+
+Hidden Layes 32
+
+Outputs 1 value (Y)
+
+4. Loss Function
+
+Used Mean Squared Error (MSELoss):
+
+criterion = nn.MSELoss()
+
+5. Optimizer
+
+Used  Adam:
+
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0005/5e-3)
+
+6. Training Loop
+
+Ran for 10,000 epochs:
+
+Forward pass → model prediction
+
+Compute loss → compare prediction vs. true Y
+
+Backpropagation → compute gradients
+
+Update weights → optimizer step
+
+Printed loss at every 10000 epochs to track progress.
+
+7. Results
+
+Loss dropped from 2596.9 → 0.0621, showing excellent convergence.
+
+Model learned the mapping Y =X^2 + 2X + 5.
+
+8. Testing
+
+After training, you can check with:
+
+model(torch.tensor([[8]]))
+
+Model prediction: 85.0078
+
+Expected output: 85.
