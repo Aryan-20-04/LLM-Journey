@@ -1,0 +1,41 @@
+Summary of the Code
+
+Model Definition
+
+A custom class LinearReg is defined, inheriting from nn.Module.
+
+It contains a single linear layer (nn.Linear(2,1)) to map 2D input → 1D output.
+
+The forward pass applies a sigmoid activation to output probabilities (since it’s a binary classification problem).
+
+Dataset
+
+Input features X are manually defined as 2D points.
+
+Labels Y are defined as 0 (below line) or 1 (on/above line).
+
+Training Setup
+
+Loss function: Binary Cross-Entropy Loss (BCELoss).
+
+Optimizer: Stochastic Gradient Descent (SGD).
+
+Training Loop
+
+Runs for multiple epochs.
+
+Each iteration:
+
+Forward pass → compute predictions.
+
+Compute loss against ground truth labels.
+
+Backpropagation → compute gradients.
+
+Optimizer step → update weights.
+
+Prediction
+
+After training, the model is tested on a new input (e.g., [5.0, 7.0]).
+
+It outputs a probability (close to 0 or 1), which can be interpreted as class label.
