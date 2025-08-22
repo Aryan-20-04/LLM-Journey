@@ -1,0 +1,45 @@
+🔹 Project Summary: Binary Classification with Neural Network on Moons Dataset
+
+This project trains a simple feedforward neural network to classify the two classes of the make_moons dataset (a common toy dataset for testing nonlinear classifiers).
+
+1. Data Preparation
+
+Used make_moons from scikit-learn with n_samples=1000 and noise=0.2.
+
+Converted dataset into PyTorch tensors.
+
+Split data into train (80%) and test (20%) sets.
+
+2. Model Architecture (ImpModel)
+
+Input Layer: 2 features (x, y coordinates).
+
+Hidden Layer 1: 32 neurons, ReLU activation.
+
+Hidden Layer 2: 16 neurons, ReLU activation.
+
+Output Layer: 1 neuron (logit for binary classification).
+
+3. Training Setup
+
+Loss Function: BCEWithLogitsLoss (binary cross-entropy with built-in sigmoid).
+
+Optimizer: Adam, learning rate = 0.01.
+
+Epochs: 1000.
+
+Printed training loss every 100 epochs.
+
+4. Training Process
+
+Forward pass → Loss calculation → Backpropagation → Parameter update.
+
+Loss decreases over time, indicating learning.
+
+5. Testing & Evaluation
+
+On the test set, predictions were made using torch.sigmoid followed by a 0.5 threshold.
+
+Accuracy was calculated by comparing predictions with true labels.
+
+Final Accuracy: ~90–95% (depends on run/seed).
