@@ -1,0 +1,65 @@
+Code Summary: Logistic Regression with Scaled Moons Dataset
+
+Imports
+
+torch, torch.nn, torch.optim → Model, loss, optimizer.
+
+make_moons, train_test_split → Generate & split dataset.
+
+StandardScaler → Feature scaling for better convergence.
+
+Dataset Preparation
+
+Generate 1000 samples with noise 0.2.
+
+Scale features with StandardScaler → mean=0, std=1.
+
+Split dataset into training (80%) and testing (20%).
+
+Convert NumPy arrays to torch.FloatTensor and reshape labels to (-1,1).
+
+Model Definition
+
+Class LogisticRegression(nn.Module):
+
+Single linear layer: 2 → 1
+
+Forward pass returns logits (no sigmoid here because BCEWithLogitsLoss expects raw logits).
+
+Loss and Optimizer
+
+Loss: BCEWithLogitsLoss() → combines sigmoid + binary cross-entropy in a numerically stable way.
+
+Optimizer: Adam with learning rate 1e-3.
+
+Training Loop
+
+Run for 1000 epochs:
+
+Forward pass: pred = model(X_train)
+
+Compute loss: loss = criterion(pred, y_train)
+
+Backward pass + zero gradients: loss.backward(), optimizer.zero_grad()
+
+Update weights: optimizer.step()
+
+Print loss every 100 epochs.
+
+Evaluation
+
+Use torch.no_grad() to disable gradient computation during testing.
+
+Compute predicted probabilities → torch.sigmoid(logits)
+
+Threshold at 0.5 → convert to binary class predictions.
+
+Calculate accuracy on test set.
+
+Key Points
+
+Scaling features improves gradient descent convergence.
+
+Using BCEWithLogitsLoss avoids manual sigmoid and numerical instability.
+
+Logistic Regression can separate linearly separable features well, but moons dataset is non-linear, so accuracy may be limited (~80%).
