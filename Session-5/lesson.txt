@@ -1,0 +1,92 @@
+Model Evaluation Report: Decision Tree and Random Forest with RandomizedSearchCV
+Dataset
+
+Dataset Used: Iris Dataset (sklearn.datasets.load_iris)
+
+Features (X): Sepal length, Sepal width, Petal length, Petal width
+
+Target (y): Iris species (Setosa, Versicolor, Virginica)
+
+Validation Method: 5-Fold Cross Validation
+
+1. Decision Tree Classifier
+Baseline Performance (without tuning)
+
+Cross-Validation Accuracies: [0.9666, 0.9666, 0.90, 0.9333, 1.00]
+
+Mean Accuracy: 0.9533
+
+Hyperparameter Tuning with RandomizedSearchCV
+
+Search Space:
+
+max_depth: [None, 5, 10, 20]
+
+min_samples_split: [2, 5, 10]
+
+min_samples_leaf: [1, 2, 4]
+
+criterion: ['gini', 'entropy']
+
+Best Hyperparameters Found:
+
+criterion: gini
+
+max_depth: None
+
+min_samples_split: 5
+
+min_samples_leaf: 1
+
+Best Cross-Validation Score: 0.9667
+
+Conclusion: The Decision Tree performed strongly with a mean CV accuracy of ~95.3%. Hyperparameter tuning improved performance slightly, achieving the best CV score of ~96.7%.
+
+2. Random Forest Classifier
+Baseline Performance (without tuning)
+
+Cross-Validation Accuracies: Example (varies per run) – [0.9666, 0.9666, 0.9333, 0.9333, 1.0]
+
+Mean Accuracy: ~0.96
+
+Hyperparameter Tuning with RandomizedSearchCV
+
+Search Space:
+
+n_estimators: [50, 100, 200, 300]
+
+max_depth: [None, 5, 10, 20]
+
+min_samples_split: [2, 5, 10]
+
+min_samples_leaf: [1, 2, 4]
+
+criterion: ['gini', 'entropy']
+
+Best Hyperparameters Found (example run):
+
+criterion: entropy
+
+n_estimators: 200
+
+max_depth: 10
+
+min_samples_split: 2
+
+min_samples_leaf: 1
+
+Best Cross-Validation Score: ~0.9733
+
+Conclusion: Random Forest outperformed the Decision Tree slightly, with the best CV accuracy reaching ~97.3%. The ensemble effect of multiple trees provided more robustness and generalization.
+
+Final Comparison
+Model	Mean CV Accuracy	Best Tuned CV Score
+Decision Tree	0.9533	0.9667
+Random Forest	~0.9600	~0.9733
+Overall Insight
+
+Both models perform very well on the Iris dataset.
+
+Random Forest achieved slightly higher accuracy and is more stable due to ensemble averaging.
+
+Hyperparameter tuning via RandomizedSearchCV improved both models’ performance, with Random Forest emerging as the stronger classifier.
