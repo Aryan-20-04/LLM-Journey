@@ -1,0 +1,123 @@
+Heart Disease Prediction – Model Summary
+
+Dataset:
+
+Source: heart.csv
+
+Shape: 912 samples × 12 features
+
+Target: HeartDisease (binary: 0 = no disease, 1 = disease)
+
+Features include numerical (Age, RestingBP, Cholesterol, MaxHR, ST_Slope) and categorical (Sex, ChestPainType, RestingECG, ExerciseAngina, ST_Slope).
+
+Data Preprocessing
+
+Categorical encoding: LabelEncoder applied to all categorical features.
+
+Train-test split: 80% training, 20% testing, stratified by target.
+
+Models Used
+
+Random Forest Classifier (RFC)
+
+Tuned hyperparameters:
+
+n_estimators = 107
+
+max_depth = 20
+
+min_samples_split = 2
+
+min_samples_leaf = 1
+
+criterion = entropy
+
+CV Score: ~0.862
+
+Test Accuracy: ~0.875
+
+XGBoost Classifier (XGB)
+
+Tuned hyperparameters:
+
+n_estimators = 500
+
+max_depth = 4
+
+learning_rate = 0.05
+
+eval_metric = logloss
+
+Handles non-linear relationships effectively.
+
+CatBoost Classifier (CBC)
+
+Tuned hyperparameters:
+
+iterations = 500
+
+depth = 4
+
+learning_rate = 0.05
+
+Handles categorical features well, minimal preprocessing required.
+
+Ensemble Model
+
+VotingClassifier (Soft voting) combining RFC, XGB, CBC.
+
+Leverages the strengths of all three models.
+
+Performance on Test Set
+
+Accuracy: 0.880 (~88%)
+
+Classification Report:
+
+Class	Precision	Recall	F1-Score	Support
+0	0.86	0.88	0.87	82
+1	0.90	0.88	0.89	102
+
+Observations:
+
+Balanced performance across both classes.
+
+Ensemble slightly improves accuracy and stability over individual models.
+
+Evaluation Metrics
+
+Confusion Matrix: Shows correct vs misclassified cases for both classes.
+
+ROC Curve & AUC: Can be plotted using ensemble predicted probabilities to evaluate threshold-independent performance.
+
+Feature Importance (Random Forest Example)
+
+Top contributing features to HeartDisease prediction:
+
+ChestPainType
+
+MaxHR
+
+ST_Slope
+
+Age
+
+ExerciseAngina
+
+Indicates both demographic and clinical factors are important predictors.
+
+Conclusions
+
+The ensemble of RFC, XGBoost, and CatBoost achieves high accuracy (~88%) in predicting heart disease.
+
+Categorical features like ChestPainType and ExerciseAngina are significant predictors.
+
+Tree-based models are effective in handling mixed data types (numerical + categorical).
+
+Further improvements can be achieved via:
+
+Hyperparameter tuning for XGB and CBC
+
+Stacking ensemble with a meta-classifier
+
+Using SHAP values for interpretability
